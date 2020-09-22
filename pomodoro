@@ -1,0 +1,8 @@
+#!/bin/bash
+export SRC="/usr/local/bin/pomodoro-timer"
+
+if [ ! "$PWD" == "/usr/local/bin" ]; then
+	export SRC="."
+fi
+
+$SRC/start.sh "$@" 
