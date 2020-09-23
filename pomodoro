@@ -1,6 +1,7 @@
 #!/bin/bash
-TESTING=0
+TESTING=1
 export SRC="/usr/local/bin/pomodoro-timer"
+export SRC="."
 ADDONS_PRE_BREAK="$SRC/pre_break.sh"	# Add To File as needed
 ADDONS_POST_BREAK="$SRC/post_break.sh" # Add To File as needed
 DEFAULT_TIMER_LENGTH=25
@@ -19,19 +20,5 @@ fi
 echo "To stop the timer, do 'kill $$'"
 echo "Hit return."
 
-# Pomodoro Loop
-while true; do
-
-# Timer
-sleep $(($DEFAULT_TIMER_LENGTH * $MINUTE))
-notify-send Pomodoro "Take a break - $DEFAULT_TIMER_LENGTH minutes are over."
-if [ -f "$ADDONS_PRE_BREAK" ]; then chmod +x $ADDONS_PRE_BREAK; $ADDONS_PRE_BREAK ; fi
-
-# Break
-sleep $(($DEFAULT_BREAK_LENGTH * $MINUTE))
-notify-send Pomodoro "Break is over - See you in $DEFAULT_TIMER_LENGTH minutes."
-if [ -f "$ADDONS_POST_BREAK" ]; then chmod +x $ADDONS_POST_BREAK; $ADDONS_POST_BREAK ; fi
-
-done
-
-
+#pomodoro 
+screen -dm bash -c "pomodoro_timer $ADDONS_PRE_BREAK $ADDONS_POST_BREAK; exec bash"

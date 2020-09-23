@@ -1,0 +1,28 @@
+#!/bin/bash
+TESTING=1
+DEFAULT_TIMER_LENGTH=25
+DEFAULT_BREAK_LENGTH=5
+DEFAULT_TIMER_LENGTH=25
+MINUTE=60
+ADDONS_PRE_BREAK=$1
+ADDONS_POST_BREAK=$2
+
+if [ "$TESTING" -eq 1 ]; then
+	DEFAULT_TIMER_LENGTH=10
+	MINUTE=1
+
+fi
+
+# Pomodoro Loop
+while true; do
+	# Timer
+	sleep $(($DEFAULT_TIMER_LENGTH * $MINUTE))
+	notify-send Pomodoro "Take a break - $DEFAULT_TIMER_LENGTH minutes are over."
+	if [ -f "$ADDONS_PRE_BREAK" ]; then chmod +x $ADDONS_PRE_BREAK; $ADDONS_PRE_BREAK ; fi
+	
+	# Break
+	sleep $(($DEFAULT_BREAK_LENGTH * $MINUTE))
+	notify-send Pomodoro "Break is over - See you in $DEFAULT_TIMER_LENGTH minutes."
+	if [ -f "$ADDONS_POST_BREAK" ]; then chmod +x $ADDONS_POST_BREAK; $ADDONS_POST_BREAK ; fi
+done
+

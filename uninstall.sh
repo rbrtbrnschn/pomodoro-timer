@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -rf "/usr/local/bin/pomodor-timer"
+rm -rf "/usr/local/bin/pomodoro_timer"
 rm -rf "/usr/local/bin/pomodoro"
 
 echo "Uninstalled"
