@@ -1,8 +1,8 @@
 # Pomodoro Timer
-Sends a notification every 25 minutes, gives you a **5 mine** break, and starts all over again.
+Sends a notification every ***25** minutes*, gives you a ***5** minute* break, and starts all over again.
 ## TODO
 
-* [ ] create readme
+* [X] create readme
 
 * [ ] use screen for process management
 
