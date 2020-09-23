@@ -1,8 +1,37 @@
 #!/bin/bash
+TESTING=0
 export SRC="/usr/local/bin/pomodoro-timer"
+ADDONS_PRE_BREAK="$SRC/pre_break.sh"	# Add To File as needed
+ADDONS_POST_BREAK="$SRC/post_break.sh" # Add To File as needed
+DEFAULT_TIMER_LENGTH=25
+DEFAULT_BREAK_LENGTH=5
+MINUTE=60
 
-if [ ! "$PWD" == "/usr/local/bin" ]; then
-	export SRC="."
+# Export Environment Variables
+$SRC/setup_env.sh
+
+if [ "$TESTING" == 1 ]; then
+	DEFAULT_TIMER_LENGTH=5
+	MINUTE=1
 fi
 
-$SRC/start.sh "$@" 
+# Kill
+echo "To stop the timer, do 'kill $$'"
+echo "Hit return."
+
+# Pomodoro Loop
+while true; do
+
+# Timer
+sleep $(($DEFAULT_TIMER_LENGTH * $MINUTE))
+notify-send Pomodoro "Take a break - $DEFAULT_TIMER_LENGTH minutes are over."
+if [ -f "$ADDONS_PRE_BREAK" ]; then chmod +x $ADDONS_PRE_BREAK; $ADDONS_PRE_BREAK ; fi
+
+# Break
+sleep $(($DEFAULT_BREAK_LENGTH * $MINUTE))
+notify-send Pomodoro "Break is over - See you in $DEFAULT_TIMER_LENGTH minutes."
+if [ -f "$ADDONS_POST_BREAK" ]; then chmod +x $ADDONS_POST_BREAK; $ADDONS_POST_BREAK ; fi
+
+done
+
+
