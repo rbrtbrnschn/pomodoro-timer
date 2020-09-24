@@ -1,14 +1,11 @@
 #!/bin/bash
+dotenv
 export TESTING=0
 export SRC="/usr/local/bin/pomodoro-timer"
-export SRC="."
 ADDONS_PRE_BREAK="$SRC/pre_break.sh"	# Add To File as needed
 ADDONS_POST_BREAK="$SRC/post_break.sh" # Add To File as needed
 
-# Export Environment Variables
-$SRC/setup_env.sh
-
-# Kill
+# Message
 echo "To stop the timer, do 'screen -r'"
 echo "Then hit ctrl-c"
 
