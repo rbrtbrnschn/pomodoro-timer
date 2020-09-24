@@ -1,5 +1,5 @@
 #!/bin/bash
-TESTING=1
+TESTING=0
 export SRC="/usr/local/bin/pomodoro-timer"
 export SRC="."
 ADDONS_PRE_BREAK="$SRC/pre_break.sh"	# Add To File as needed
@@ -17,8 +17,8 @@ if [ "$TESTING" == 1 ]; then
 fi
 
 # Kill
-echo "To stop the timer, do 'kill $$'"
-echo "Hit return."
+echo "To stop the timer, do 'screen -r'"
+echo "Then hit ctrl-c"
 
 #pomodoro 
 screen -dm bash -c "pomodoro_timer $ADDONS_PRE_BREAK $ADDONS_POST_BREAK; exec bash"
