@@ -1,20 +1,12 @@
 #!/bin/bash
-TESTING=0
+export TESTING=0
 export SRC="/usr/local/bin/pomodoro-timer"
 export SRC="."
 ADDONS_PRE_BREAK="$SRC/pre_break.sh"	# Add To File as needed
 ADDONS_POST_BREAK="$SRC/post_break.sh" # Add To File as needed
-DEFAULT_TIMER_LENGTH=25
-DEFAULT_BREAK_LENGTH=5
-MINUTE=60
 
 # Export Environment Variables
 $SRC/setup_env.sh
-
-if [ "$TESTING" == 1 ]; then
-	DEFAULT_TIMER_LENGTH=5
-	MINUTE=1
-fi
 
 # Kill
 echo "To stop the timer, do 'screen -r'"
