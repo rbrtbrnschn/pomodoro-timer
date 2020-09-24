@@ -15,11 +15,13 @@ fi
 # Pomodoro Loop
 while true; do
 	# Timer
+	echo "Waiting for $DEFAULT_TIMER_LENGTH minutes to be over."
 	sleep $(($DEFAULT_TIMER_LENGTH * $MINUTE))
 	notify-send Pomodoro "Take a break - $DEFAULT_TIMER_LENGTH minutes are over."
 	if [ -f "$ADDONS_PRE_BREAK" ]; then chmod +x $ADDONS_PRE_BREAK; $ADDONS_PRE_BREAK ; fi
 	
 	# Break
+	echo "Waiting for $DEFAULT_BREAK_LENGTH minutes to be over."
 	sleep $(($DEFAULT_BREAK_LENGTH * $MINUTE))
 	notify-send Pomodoro "Break is over - See you in $DEFAULT_TIMER_LENGTH minutes."
 	if [ -f "$ADDONS_POST_BREAK" ]; then chmod +x $ADDONS_POST_BREAK; $ADDONS_POST_BREAK ; fi
