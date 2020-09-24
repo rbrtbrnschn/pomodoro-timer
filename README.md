@@ -1,4 +1,4 @@
-# Pomodoro Timer
+# Pomodoro Timer | Janiyah
 Sends a notification every ***25** minutes*, gives you a ***5** minute* break, and starts all over again.
 ## TODO
 
